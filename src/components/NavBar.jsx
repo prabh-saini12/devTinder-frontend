@@ -50,8 +50,8 @@ const NavBar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="" className="text-pink-600">
-                    Settings
+                  <Link to="/connections" className="text-pink-600">
+                    connections
                   </Link>
                 </li>
                 <li>
