@@ -14,11 +14,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    if (!emailId || !password) {
-      setError("Both fields are required!");
-      return;
-    }
-
+    setError("");
     try {
       const res = await axios.post(
         `${BASE_URL}/login`,
@@ -30,14 +26,20 @@ const Login = () => {
       );
       // console.log(res.data)
       dispatch(addUser(res.data));
-     return navigate("/");
+      return navigate("/");
 
       setEmailId("");
       setPassword("");
-      setError("");
     } catch (error) {
-      console.log(error);
-      setError("Login failed. Please try again.");
+      console.error("Login failed:", error);
+
+      if (error.response) {
+        setError(
+          error.response.data.error || "Login failed. Please try again."
+        );
+      } else {
+        setError("Login failed. Please try again.");
+      }
     }
   };
 
@@ -48,7 +50,6 @@ const Login = () => {
           <h2 className="card-title justify-center">Login</h2>
 
           {error && <p className="text-red-500">{error}</p>}
-
           <div className="">
             <label className="form-control w-full max-w-xs my-2">
               <div className="label-text">Email id</div>
