@@ -55,6 +55,11 @@ const NavBar = () => {
                   </Link>
                 </li>
                 <li>
+                  <Link to="/request" className="text-pink-600">
+                    Requests
+                  </Link>
+                </li>
+                <li>
                   <button onClick={handleLogout} className="text-pink-600">
                     Logout
                   </button>
